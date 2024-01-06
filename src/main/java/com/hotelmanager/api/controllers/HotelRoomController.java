@@ -59,5 +59,11 @@ public class HotelRoomController {
         return ResponseEntity.ok(updatedHotelRoom);
     }
 
+    @DeleteMapping("hotelroom/{id}")
+    public ResponseEntity<Void> deleteHotelRoom(@PathVariable Long id){
+        hotelRoomService.deleteHotelRoom(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

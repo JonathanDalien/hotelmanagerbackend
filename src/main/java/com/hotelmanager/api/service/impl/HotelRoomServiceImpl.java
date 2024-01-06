@@ -56,7 +56,8 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 
     @Override
     public List<HotelRoom> getAllHotelRooms() {
-        return hotelRoomRepository.findAll();
+        //sort by id
+        return hotelRoomRepository.findAll().stream().sorted((o1, o2) -> (int) (o1.getId() - o2.getId())).toList();
     }
 
     @Override
