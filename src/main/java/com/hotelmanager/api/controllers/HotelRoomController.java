@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/")
@@ -22,8 +23,8 @@ public class HotelRoomController {
     }
 
     @GetMapping("hotelrooms")
-    public ResponseEntity<List<HotelRoom>> getHotelRooms(){
-        List<HotelRoom> hotelRooms = hotelRoomService.getAllHotelRooms();
+    public ResponseEntity<List<HotelRoom>> getHotelRooms(@RequestParam(required = false) Optional<Boolean[]> withMinibar, @RequestParam(required = false) Optional<Long[]> roomSizeIds){
+        List<HotelRoom> hotelRooms = hotelRoomService.getAllHotelRooms(withMinibar, roomSizeIds);
         return ResponseEntity.ok(hotelRooms);
     }
 

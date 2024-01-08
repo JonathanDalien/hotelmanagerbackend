@@ -10,7 +10,12 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 @Service
 public class HotelRoomServiceImpl implements HotelRoomService {
 
@@ -54,10 +59,25 @@ public class HotelRoomServiceImpl implements HotelRoomService {
         return foundHotelRoom;
     }
 
+
     @Override
-    public List<HotelRoom> getAllHotelRooms() {
-        //sort by id
-        return hotelRoomRepository.findAll().stream().sorted((o1, o2) -> (int) (o1.getId() - o2.getId())).toList();
+    public List<HotelRoom> getAllHotelRooms(Optional<Boolean[]> minibarStatuses, Optional<Long[]> roomSizeIds ) {
+        Stream<HotelRoom> hotelRoomStream = hotelRoomRepository.findAll().stream();
+
+        // Filter based on minibar status if present
+        if (minibarStatuses.isPresent()) {
+            List<Boolean> statusList = Arrays.asList(minibarStatuses.get());
+            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> statusList.isEmpty() || statusList.contains(hotelRoom.isMiniBar()));
+        }
+
+        // Filter based on room size IDs if present
+        if (roomSizeIds.isPresent()) {
+            List<Long> sizeIds = Arrays.asList(roomSizeIds.get());
+            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> hotelRoom.getRoomSize() != null && sizeIds.contains(hotelRoom.getRoomSize().getId()));
+        }
+
+        // Return the sorted list
+        return hotelRoomStream.sorted(Comparator.comparing(HotelRoom::getId)).toList();
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface HotelRoomService {
@@ -17,7 +18,7 @@ public interface HotelRoomService {
 
     HotelRoom getHotelRoomByRoomNumber(Integer roomNumber);
 
-    List<HotelRoom> getAllHotelRooms();
+    List<HotelRoom> getAllHotelRooms(Optional<Boolean[]> minibarStatuses, Optional<Long[]> roomSizeIds);
 
     void deleteHotelRoom(Long id);
 
