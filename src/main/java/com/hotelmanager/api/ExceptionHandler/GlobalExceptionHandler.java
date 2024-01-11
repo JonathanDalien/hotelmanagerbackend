@@ -15,12 +15,12 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
+//Global Exception Handler
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-
+//Exception Handler for ConstraintViolationException (Validation)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, WebRequest request) {
         ApiError apiError = new ApiError();
@@ -33,6 +33,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
+    //Exception Handler for DataIntegrityViolationException (Unique Constraint)
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiError> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
         ApiError apiError = new ApiError();
@@ -42,6 +43,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
+    //Exception Handler for RuntimeException
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ApiError> handleRuntimeException(RuntimeException ex) {
         ApiError apiError = new ApiError();

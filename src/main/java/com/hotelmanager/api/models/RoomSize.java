@@ -10,16 +10,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Room Size Entity
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomSize {
 
+    //ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Size
     @NotNull
     @NotBlank
     private String size; // z.B. Einzelzimmer, Doppelzimmer, Suite
