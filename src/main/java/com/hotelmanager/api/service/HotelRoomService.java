@@ -23,7 +23,7 @@ public interface HotelRoomService {
     HotelRoom getHotelRoomByRoomNumber(Integer roomNumber);
 
     //Get All HotelRooms
-    List<HotelRoom> getAllHotelRooms(Optional<Boolean[]> minibarStatuses, Optional<Long[]> roomSizeIds);
+    List<HotelRoom> getAllHotelRooms(Optional<Boolean[]> minibarStatuses, Optional<Long[]> roomSizeIds, Optional<Integer> roomNumber);
 
     //Delete HotelRoom
     void deleteHotelRoom(Long id);

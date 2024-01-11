@@ -76,7 +76,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 
     //Get All HotelRooms
     @Override
-    public List<HotelRoom> getAllHotelRooms(Optional<Boolean[]> minibarStatuses, Optional<Long[]> roomSizeIds ) {
+    public List<HotelRoom> getAllHotelRooms(Optional<Boolean[]> minibarStatuses, Optional<Long[]> roomSizeIds, Optional<Integer> roomNumber ) {
         //Get all HotelRooms and create stream
         Stream<HotelRoom> hotelRoomStream = hotelRoomRepository.findAll().stream();
 
@@ -94,6 +94,12 @@ public class HotelRoomServiceImpl implements HotelRoomService {
             List<Long> sizeIds = Arrays.asList(roomSizeIds.get());
             // Filter the stream based on the list
             hotelRoomStream = hotelRoomStream.filter(hotelRoom -> hotelRoom.getRoomSize() != null && sizeIds.contains(hotelRoom.getRoomSize().getId()));
+        }
+
+        // Filter based on a single room number if present
+        if (roomNumber.isPresent()) {
+            int number = roomNumber.get();
+            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> hotelRoom.getRoomNumber() == number);
         }
 
         // Return the sorted list

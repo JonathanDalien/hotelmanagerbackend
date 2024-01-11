@@ -26,8 +26,8 @@ public class HotelRoomController {
 
     //Get All HotelRooms
     @GetMapping("hotelrooms")
-    public ResponseEntity<List<HotelRoom>> getHotelRooms(@RequestParam(required = false) Optional<Boolean[]> withMinibar, @RequestParam(required = false) Optional<Long[]> roomSizeIds){
-        List<HotelRoom> hotelRooms = hotelRoomService.getAllHotelRooms(withMinibar, roomSizeIds);
+    public ResponseEntity<List<HotelRoom>> getHotelRooms(@RequestParam(required = false) Optional<Boolean[]> withMinibar, @RequestParam(required = false) Optional<Long[]> roomSizeIds, Optional<Integer> roomNumber){
+        List<HotelRoom> hotelRooms = hotelRoomService.getAllHotelRooms(withMinibar, roomSizeIds, roomNumber);
         return ResponseEntity.ok(hotelRooms);
     }
 
