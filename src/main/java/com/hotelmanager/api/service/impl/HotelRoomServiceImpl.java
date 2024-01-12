@@ -99,7 +99,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
         // Filter based on a single room number if present
         if (roomNumber.isPresent()) {
             int number = roomNumber.get();
-            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> hotelRoom.getRoomNumber() == number);
+            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> hotelRoom.getRoomNumber().toString().contains(String.valueOf(number)));
         }
 
         // Return the sorted list
