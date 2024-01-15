@@ -25,5 +25,5 @@ public class RoomSize {
     //Size
     @NotNull
     @NotBlank
-    private String size; // z.B. Einzelzimmer, Doppelzimmer, Suite
+    private String size; //  Einzelzimmer, Doppelzimmer, Suite
 }

@@ -1,6 +1,6 @@
 package com.hotelmanager.api.service.impl;
 
-import com.hotelmanager.api.HotelRoomDto;
+import com.hotelmanager.api.dto.HotelRoomDto;
 import com.hotelmanager.api.models.HotelRoom;
 import com.hotelmanager.api.models.RoomSize;
 import com.hotelmanager.api.repository.HotelRoomRepository;
@@ -93,7 +93,7 @@ public class HotelRoomServiceImpl implements HotelRoomService {
             // Convert the array to a list
             List<Long> sizeIds = Arrays.asList(roomSizeIds.get());
             // Filter the stream based on the list
-            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> hotelRoom.getRoomSize() != null && sizeIds.contains(hotelRoom.getRoomSize().getId()));
+            hotelRoomStream = hotelRoomStream.filter(hotelRoom -> sizeIds.isEmpty() || sizeIds.contains(hotelRoom.getRoomSize().getId()));
         }
 
         // Filter based on a single room number if present

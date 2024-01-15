@@ -1,10 +1,7 @@
 package com.hotelmanager.api.service;
 
-import com.hotelmanager.api.HotelRoomDto;
+import com.hotelmanager.api.dto.HotelRoomDto;
 import com.hotelmanager.api.models.HotelRoom;
-import com.hotelmanager.api.repository.HotelRoomRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.hotelmanager.api;
+package com.hotelmanager.api.dto;
 
 import lombok.Data;
 

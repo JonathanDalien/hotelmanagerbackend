@@ -1,6 +1,6 @@
 package com.hotelmanager.api.controllers;
 
-import com.hotelmanager.api.HotelRoomDto;
+import com.hotelmanager.api.dto.HotelRoomDto;
 import com.hotelmanager.api.models.HotelRoom;
 import com.hotelmanager.api.service.HotelRoomService;
 import jakarta.validation.Valid;
